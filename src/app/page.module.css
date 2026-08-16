@@ -178,7 +178,7 @@
   transform: translateY(-1px);
   opacity: 0.92;
 }
-.dark {
+.dark.dark {
   background: var(--b);
   color: #fff;
 }
