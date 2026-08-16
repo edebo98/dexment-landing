@@ -1,0 +1,572 @@
+/*
+  Scoped port of dexment-corrected.html's design. Every rule either targets a
+  locally-hashed class, or (for the handful of bare-tag/reset rules the
+  original stylesheet had at the top level: *, body, a, nav, section, footer)
+  is nested under .page so nothing escapes this page into other routes.
+*/
+
+.page,
+.page * {
+  box-sizing: border-box;
+}
+
+.page {
+  --b: #0b0b0b;
+  --y: #f5c400;
+  --m: #6b6b66;
+  --l: #deded8;
+  --green: #237a58;
+  --red: #b3261e;
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  color: var(--b);
+  background: #fff;
+  line-height: 1.5;
+}
+
+.page a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.page a:focus-visible,
+.page button:focus-visible,
+.page input:focus-visible,
+.page select:focus-visible {
+  outline: 3px solid var(--b);
+  outline-offset: 3px;
+}
+.yellow:focus-visible {
+  outline-color: var(--b);
+}
+.dark:focus-visible,
+.darkSec a:focus-visible {
+  outline-color: var(--y);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  background: var(--b);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 13px;
+  z-index: 50;
+}
+.skip:focus {
+  left: 24px;
+  top: 14px;
+}
+
+.page nav {
+  height: 74px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: #fffffff2;
+  backdrop-filter: blur(6px);
+  z-index: 20;
+}
+.navin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.logo span {
+  color: var(--y);
+}
+.links {
+  display: flex;
+  gap: 25px;
+  font-size: 13px;
+  font-weight: 800;
+}
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.burger {
+  display: none;
+  background: none;
+  border: 1px solid var(--l);
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--b);
+  position: relative;
+}
+.burger span:before,
+.burger span:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: var(--b);
+}
+.burger span:before {
+  top: -6px;
+}
+.burger span:after {
+  top: 6px;
+}
+.mobileNav {
+  display: none;
+  position: fixed;
+  top: 74px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0 22px;
+  z-index: 19;
+  box-shadow: 0 18px 40px #00000014;
+}
+.mobileNav.open {
+  display: block;
+}
+.mobileNav a {
+  display: block;
+  padding: 14px 24px;
+  font-weight: 800;
+  font-size: 15px;
+  border-bottom: 1px solid #f2f2ee;
+}
+.mobileNav a:last-child {
+  border-bottom: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 19px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+.dark {
+  background: var(--b);
+  color: #fff;
+}
+.yellow {
+  background: var(--y);
+  color: var(--b);
+}
+.btnGhost {
+  background: transparent;
+  border: 2px solid var(--b);
+  color: var(--b);
+}
+
+.hero {
+  padding: 78px 0;
+  background: linear-gradient(135deg, #fff, #f5f5f0);
+}
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: 900;
+}
+.hero h1 {
+  font-size: clamp(50px, 7vw, 78px);
+  line-height: 0.94;
+  letter-spacing: -4px;
+  margin: 15px 0 22px;
+}
+.hero p {
+  font-size: 18px;
+  color: #5f5f5a;
+  max-width: 650px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.dash {
+  background: #101010;
+  color: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 25px 60px #0002;
+}
+.dashbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+.live {
+  color: var(--y);
+}
+.dashrow {
+  background: #1d1d1d;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  padding: 14px;
+  margin: 9px 0;
+}
+.dashrow small {
+  color: #999;
+}
+.dashrow b {
+  display: block;
+  margin-top: 3px;
+}
+.mini {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+.mini .dashrow {
+  margin: 0;
+}
+.pdfshot {
+  margin-top: 14px;
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+  opacity: 0.92;
+}
+
+.page section {
+  padding: 82px 0;
+}
+.head {
+  max-width: 780px;
+  margin-bottom: 38px;
+}
+.head h2 {
+  font-size: 42px;
+  line-height: 1.03;
+  letter-spacing: -2px;
+  margin: 10px 0 12px;
+}
+.head p {
+  color: var(--m);
+  font-size: 17px;
+}
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+.grid4 + .grid4 {
+  margin-top: 15px;
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card {
+  border: 1px solid var(--l);
+  border-radius: 13px;
+  padding: 23px;
+  background: #fff;
+}
+.card h3 {
+  font-size: 18px;
+  margin: 0 0 7px;
+}
+.card p {
+  font-size: 14px;
+  color: var(--m);
+  margin: 0;
+}
+.icon {
+  height: 40px;
+  width: 40px;
+  border-radius: 9px;
+  background: var(--y);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+.tools {
+  background: #f7f7f2;
+}
+.toolcard {
+  min-height: 180px;
+}
+.darkSec {
+  background: #0b0b0b;
+  color: #fff;
+}
+.darkSec .head p {
+  color: #aaa;
+}
+.darkSec .card {
+  background: #171717;
+  border-color: #2c2c2c;
+}
+.darkSec .card p {
+  color: #aaa;
+}
+
+.psp {
+  background: #f1f1ea;
+}
+.pspGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+}
+.pspTitle {
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 10px 0 18px;
+}
+.pspLead {
+  color: #666;
+  font-size: 17px;
+}
+.checks {
+  padding: 0;
+  list-style: none;
+}
+.checks li {
+  margin: 12px 0;
+  padding-left: 26px;
+  position: relative;
+}
+.checks li:before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 900;
+}
+
+.flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.step {
+  border-top: 3px solid var(--y);
+  padding: 18px;
+  background: #f7f7f7;
+}
+.step b {
+  font-size: 11px;
+}
+.step h3,
+.step h4 {
+  margin: 6px 0;
+  font-size: 16px;
+}
+.step p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+.pspSteps .step {
+  margin: 12px 0;
+}
+
+.cta {
+  background: var(--y);
+  padding: 65px 0;
+}
+.ctaIn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+.cta h2 {
+  font-size: 45px;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 0;
+}
+.cta .eyebrow {
+  margin-bottom: 10px;
+}
+.formCol {
+  width: 100%;
+  max-width: 440px;
+}
+.formCol p {
+  margin: 0 0 18px;
+  font-size: 15px;
+}
+.waitForm {
+  display: grid;
+  gap: 10px;
+}
+.waitForm label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.waitForm input,
+.waitForm select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 2px solid var(--b);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--b);
+}
+.field {
+  display: grid;
+  gap: 5px;
+}
+.formNote {
+  font-size: 12px;
+  color: #5c5310;
+  margin: 4px 0 0;
+}
+.formMsg {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 6px 0 0;
+  min-height: 20px;
+}
+.fieldError {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+}
+.submitError {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--red);
+  margin: 6px 0 0;
+}
+.successPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.successTitle {
+  font-size: 22px;
+  font-weight: 900;
+  margin: 0;
+}
+.successText {
+  font-size: 14px;
+  color: #5c5310;
+  margin: 0;
+}
+
+.page footer {
+  background: #0b0b0b;
+  color: #fff;
+  padding: 38px 0;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.foot small {
+  color: #999;
+}
+
+@media (max-width: 850px) {
+  .heroGrid,
+  .pspGrid {
+    grid-template-columns: 1fr;
+  }
+  .grid4,
+  .grid3 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .flow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .links {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+  .ctaIn,
+  .foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pspTitle {
+    font-size: 36px;
+  }
+}
+@media (max-width: 520px) {
+  .grid4,
+  .grid3,
+  .flow {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 52px;
+    letter-spacing: -2px;
+  }
+  .head h2,
+  .cta h2 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+  .page section {
+    padding: 58px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page *{
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -3,12 +3,10 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Container } from "@/components/ui/container";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { FieldGroup, FieldLabel, Input, Select } from "@/components/ui/field";
+import { cn } from "@/lib/utils";
 import { countries, constructionStages, userTypes } from "@/lib/waitlist-options";
 import { supabase } from "@/lib/supabase";
+import styles from "@/app/page.module.css";
 
 interface FormState {
   name: string;
@@ -83,197 +81,173 @@ export function Waitlist() {
   }
 
   return (
-    <section id="waitlist" className="section-y bg-ink-950 text-white">
-      <Container className="flex flex-col items-center gap-4 text-center">
-        <Badge className="border-white/15 bg-white/5 text-ink-200">Early access</Badge>
-        <h2 className="max-w-2xl text-display-md font-semibold text-balance text-white">
-          Be the first to build with confidence.
-        </h2>
-        <p className="max-w-[46ch] text-lg leading-relaxed text-ink-300">
-          Join the waitlist to get priority access as we bring Dexment to more homeowners, contractors and
-          project teams.
-        </p>
+    <>
+      <p>
+        For clients who need confidence, teams who need control, and professional providers who want better ways to
+        connect and deliver.
+      </p>
+      <AnimatePresence mode="wait" initial={false}>
+        {status === "success" ? (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.successPanel}
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12.5l4.5 4.5L19 7"
+                stroke="#237a58"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <h3 className={styles.successTitle}>You&apos;re on the list.</h3>
+            <p className={styles.successText}>
+              Thanks, {values.name.split(" ")[0]}. We&apos;ll be in touch as early access spots open up for builders
+              in {values.country}.
+            </p>
+            <button
+              type="button"
+              className={cn(styles.btn, styles.btnGhost)}
+              onClick={() => {
+                setValues(initialState);
+                setStatus("idle");
+              }}
+            >
+              Add another project
+            </button>
+          </motion.div>
+        ) : (
+          <motion.form
+            key="form"
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            noValidate
+            className={styles.waitForm}
+          >
+            <div className={styles.field}>
+              <label htmlFor="wl-name">Full name</label>
+              <input
+                id="wl-name"
+                name="name"
+                autoComplete="name"
+                placeholder="Amara Okafor"
+                value={values.name}
+                onChange={(e) => updateField("name", e.target.value)}
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? "wl-name-error" : undefined}
+              />
+              {errors.name ? (
+                <span id="wl-name-error" className={styles.fieldError}>
+                  {errors.name}
+                </span>
+              ) : null}
+            </div>
 
-        <div className="relative mt-8 w-full max-w-xl overflow-hidden rounded-3xl border border-white/10 bg-ink-900 p-8 text-left md:p-10">
-          <AnimatePresence mode="wait" initial={false}>
-            {status === "success" ? (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-center gap-5 py-6 text-center"
+            <div className={styles.field}>
+              <label htmlFor="wl-email">Email address</label>
+              <input
+                id="wl-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder="you@email.com"
+                value={values.email}
+                onChange={(e) => updateField("email", e.target.value)}
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "wl-email-error" : undefined}
+              />
+              {errors.email ? (
+                <span id="wl-email-error" className={styles.fieldError}>
+                  {errors.email}
+                </span>
+              ) : null}
+            </div>
+
+            <div className={styles.field}>
+              <label htmlFor="wl-country">Country</label>
+              <select
+                id="wl-country"
+                name="country"
+                value={values.country}
+                onChange={(e) => updateField("country", e.target.value)}
+                aria-invalid={Boolean(errors.country)}
               >
-                <motion.span
-                  initial={{ scale: 0.6, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-accent-400"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M5 12.5l4.5 4.5L19 7"
-                      stroke="#0A0A0B"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </motion.span>
-                <h3 className="text-2xl font-semibold text-white">You&apos;re on the list.</h3>
-                <p className="max-w-sm text-[0.9375rem] leading-relaxed text-ink-300">
-                  Thanks, {values.name.split(" ")[0]}. We&apos;ll be in touch as early access spots open up for
-                  builders in {values.country}.
-                </p>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  className="mt-2 text-ink-300"
-                  onClick={() => {
-                    setValues(initialState);
-                    setStatus("idle");
-                  }}
-                >
-                  Add another project
-                </Button>
-              </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                noValidate
-                className="flex flex-col gap-5"
+                <option value="" disabled>
+                  Select country
+                </option>
+                {countries.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              {errors.country ? <span className={styles.fieldError}>{errors.country}</span> : null}
+            </div>
+
+            <div className={styles.field}>
+              <label htmlFor="wl-type">I am a</label>
+              <select
+                id="wl-type"
+                name="userType"
+                value={values.userType}
+                onChange={(e) => updateField("userType", e.target.value)}
+                aria-invalid={Boolean(errors.userType)}
               >
-                <FieldGroup>
-                  <FieldLabel htmlFor="wl-name">Full name</FieldLabel>
-                  <Input
-                    id="wl-name"
-                    name="name"
-                    autoComplete="name"
-                    placeholder="Amara Okafor"
-                    value={values.name}
-                    onChange={(e) => updateField("name", e.target.value)}
-                    aria-invalid={Boolean(errors.name)}
-                    aria-describedby={errors.name ? "wl-name-error" : undefined}
-                  />
-                  {errors.name ? (
-                    <span id="wl-name-error" className="text-[0.8rem] text-accent-400">
-                      {errors.name}
-                    </span>
-                  ) : null}
-                </FieldGroup>
+                <option value="" disabled>
+                  Select one
+                </option>
+                {userTypes.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+              {errors.userType ? <span className={styles.fieldError}>{errors.userType}</span> : null}
+            </div>
 
-                <FieldGroup>
-                  <FieldLabel htmlFor="wl-email">Email address</FieldLabel>
-                  <Input
-                    id="wl-email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="you@email.com"
-                    value={values.email}
-                    onChange={(e) => updateField("email", e.target.value)}
-                    aria-invalid={Boolean(errors.email)}
-                    aria-describedby={errors.email ? "wl-email-error" : undefined}
-                  />
-                  {errors.email ? (
-                    <span id="wl-email-error" className="text-[0.8rem] text-accent-400">
-                      {errors.email}
-                    </span>
-                  ) : null}
-                </FieldGroup>
+            <div className={styles.field}>
+              <label htmlFor="wl-stage">Current construction stage</label>
+              <select
+                id="wl-stage"
+                name="stage"
+                value={values.stage}
+                onChange={(e) => updateField("stage", e.target.value)}
+                aria-invalid={Boolean(errors.stage)}
+              >
+                <option value="" disabled>
+                  Select stage
+                </option>
+                {constructionStages.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+              {errors.stage ? <span className={styles.fieldError}>{errors.stage}</span> : null}
+            </div>
 
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  <FieldGroup>
-                    <FieldLabel htmlFor="wl-country">Country</FieldLabel>
-                    <Select
-                      id="wl-country"
-                      name="country"
-                      value={values.country}
-                      onChange={(e) => updateField("country", e.target.value)}
-                      aria-invalid={Boolean(errors.country)}
-                    >
-                      <option value="" disabled>
-                        Select country
-                      </option>
-                      {countries.map((c) => (
-                        <option key={c} value={c}>
-                          {c}
-                        </option>
-                      ))}
-                    </Select>
-                    {errors.country ? <span className="text-[0.8rem] text-accent-400">{errors.country}</span> : null}
-                  </FieldGroup>
+            {submitError ? (
+              <p role="alert" className={styles.submitError}>
+                {submitError}
+              </p>
+            ) : null}
 
-                  <FieldGroup>
-                    <FieldLabel htmlFor="wl-type">I am a</FieldLabel>
-                    <Select
-                      id="wl-type"
-                      name="userType"
-                      value={values.userType}
-                      onChange={(e) => updateField("userType", e.target.value)}
-                      aria-invalid={Boolean(errors.userType)}
-                    >
-                      <option value="" disabled>
-                        Select one
-                      </option>
-                      {userTypes.map((t) => (
-                        <option key={t} value={t}>
-                          {t}
-                        </option>
-                      ))}
-                    </Select>
-                    {errors.userType ? (
-                      <span className="text-[0.8rem] text-accent-400">{errors.userType}</span>
-                    ) : null}
-                  </FieldGroup>
-                </div>
+            <button type="submit" className={cn(styles.btn, styles.dark)} disabled={status === "submitting"}>
+              {status === "submitting" ? "Joining..." : "Join the waitlist"}
+            </button>
 
-                <FieldGroup>
-                  <FieldLabel htmlFor="wl-stage">Current construction stage</FieldLabel>
-                  <Select
-                    id="wl-stage"
-                    name="stage"
-                    value={values.stage}
-                    onChange={(e) => updateField("stage", e.target.value)}
-                    aria-invalid={Boolean(errors.stage)}
-                  >
-                    <option value="" disabled>
-                      Select stage
-                    </option>
-                    {constructionStages.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </Select>
-                  {errors.stage ? <span className="text-[0.8rem] text-accent-400">{errors.stage}</span> : null}
-                </FieldGroup>
-
-                {submitError ? (
-                  <p role="alert" className="text-center text-[0.8125rem] text-accent-400">
-                    {submitError}
-                  </p>
-                ) : null}
-
-                <Button type="submit" variant="accent" size="lg" disabled={status === "submitting"} className="mt-2 w-full">
-                  {status === "submitting" ? "Joining..." : "Join the Early Access Waitlist"}
-                </Button>
-
-                <p className="text-center text-[0.8rem] text-ink-400">
-                  No spam. We&apos;ll only reach out about your early access invitation.
-                </p>
-              </motion.form>
-            )}
-          </AnimatePresence>
-        </div>
-      </Container>
-    </section>
+            <p className={styles.formNote}>We&apos;ll email you when early access opens. No spam.</p>
+          </motion.form>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
