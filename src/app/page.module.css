@@ -556,6 +556,9 @@
   color: #5c5310;
   margin: 4px 0 0;
 }
+.formNoteLink {
+  text-decoration: underline;
+}
 .formMsg {
   font-size: 14px;
   font-weight: 800;
@@ -638,6 +641,12 @@
 .foot small {
   color: #999;
 }
+.footLinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
 @media (max-width: 850px) {
   .heroGrid,
@@ -692,5 +701,74 @@
   .page *{
     transition: none !important;
     animation: none !important;
+  }
+}
+
+.legalBody {
+  max-width: 760px;
+}
+.legalBody h2 {
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin: 40px 0 14px;
+}
+.legalBody h2:first-child {
+  margin-top: 0;
+}
+.legalBody h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 28px 0 10px;
+}
+.legalBody p {
+  color: var(--m);
+  font-size: 16px;
+  margin: 0 0 16px;
+}
+.legalBody ul,
+.legalBody ol {
+  color: var(--m);
+  font-size: 16px;
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+.legalBody li {
+  margin: 6px 0;
+}
+.legalBody table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--l);
+  border-radius: 13px;
+  overflow: hidden;
+  margin: 0 0 24px;
+  font-size: 14px;
+}
+.legalBody th,
+.legalBody td {
+  border: 1px solid var(--l);
+  padding: 10px 14px;
+  text-align: left;
+}
+.legalBody th {
+  background: #f7f7f2;
+  font-weight: 800;
+}
+.legalBody h2[id],
+.legalBody h3[id] {
+  scroll-margin-top: 86px;
+}
+.legalPlaceholder {
+  border: 1px dashed var(--l);
+  border-radius: 13px;
+  padding: 20px;
+  color: var(--m);
+  font-size: 14px;
+  margin: 0 0 24px;
+}
+@media (max-width: 520px) {
+  .legalBody h2 {
+    font-size: 24px;
   }
 }

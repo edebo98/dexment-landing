@@ -1,75 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Waitlist } from "@/components/sections/waitlist";
 import { ProviderWaitlist } from "@/components/sections/provider-waitlist";
+import { SiteNav } from "@/components/dexment/nav";
+import { SiteFooter } from "@/components/dexment/footer";
 import styles from "@/app/page.module.css";
 
-const navLinks = [
-  { href: "#solutions", label: "Solutions" },
-  { href: "#tools", label: "Core Tools" },
-  { href: "#psp", label: "PSP Network" },
-  { href: "#workflow", label: "How It Works" },
-];
-
 export function DexmentLanding() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
   return (
     <div className={styles.page}>
       <a className={styles.skip} href="#main">
         Skip to content
       </a>
 
-      <nav>
-        <div className={cn(styles.wrap, styles.navin)}>
-          <a className={styles.brand} href="#">
-            <img
-              src="/images/dexment-mark-nav.png"
-              alt=""
-              width={180}
-              height={179}
-              className={styles.navMark}
-            />
-            <span className={cn(styles.logo, styles.wordmark)}>
-              DEX<span>MENT</span>
-            </span>
-          </a>
-          <div className={styles.links}>
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href}>
-                {link.label}
-              </a>
-            ))}
-          </div>
-          <div className={styles.navRight}>
-            <a className={cn(styles.btn, styles.yellow)} href="#contact">
-              Join the Waitlist
-            </a>
-            <button
-              type="button"
-              className={styles.burger}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileOpen}
-              aria-controls="mobileNav"
-              onClick={() => setMobileOpen((open) => !open)}
-            >
-              <span />
-            </button>
-          </div>
-        </div>
-      </nav>
-      <div className={cn(styles.mobileNav, mobileOpen && styles.open)} id="mobileNav">
-        {navLinks.map((link) => (
-          <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
-            {link.label}
-          </a>
-        ))}
-        <a href="#contact" onClick={() => setMobileOpen(false)}>
-          Join the Waitlist
-        </a>
-      </div>
+      <SiteNav />
 
       <main id="main">
         <header className={styles.hero}>
@@ -82,10 +27,10 @@ export function DexmentLanding() {
                 managers, consultants, vendors, trades and verified professionals into one transparent workspace.
               </p>
               <div className={styles.actions}>
-                <a className={cn(styles.btn, styles.dark)} href="#contact">
+                <a className={cn(styles.btn, styles.dark)} href="/#contact">
                   Start a Project
                 </a>
-                <a className={cn(styles.btn, styles.yellow)} href="#psp-signup">
+                <a className={cn(styles.btn, styles.yellow)} href="/#psp-signup">
                   Join the Provider Waitlist
                 </a>
               </div>
@@ -403,26 +348,7 @@ export function DexmentLanding() {
         </section>
       </main>
 
-      <footer>
-        <div className={cn(styles.wrap, styles.foot)}>
-          <div>
-            <div className={styles.brand}>
-              <img
-                src="/images/dexment-mark-nav.png"
-                alt=""
-                width={180}
-                height={179}
-                className={styles.footMark}
-              />
-              <span className={cn(styles.logo, styles.wordmark)}>
-                DEX<span>MENT</span>
-              </span>
-            </div>
-            <small>Plan. Track. Deliver.</small>
-          </div>
-          <small>&copy; 2026 Dexment. All rights reserved.</small>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

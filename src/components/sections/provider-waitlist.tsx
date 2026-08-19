@@ -220,7 +220,7 @@ export function ProviderWaitlist() {
             {status === "submitting" ? "Joining..." : "Join the provider waitlist"}
           </button>
 
-          <p className={styles.formNote}>We&apos;ll email you when the PSP network opens. No spam.</p>
+          <p className={styles.formNote}>We&apos;ll email you when the PSP network opens. No spam. See our <a href="/privacy" className={styles.formNoteLink}>Privacy Policy</a>.</p>
         </motion.form>
       )}
     </AnimatePresence>
