@@ -6,7 +6,6 @@ import styles from "@/app/page.module.css";
 
 const navLinks = [
   { href: "/#solutions", label: "Solutions" },
-  { href: "/#tools", label: "Core Tools" },
   { href: "/#psp", label: "PSP Network" },
   { href: "/#workflow", label: "How It Works" },
 ];
@@ -38,8 +37,8 @@ export function SiteNav() {
             ))}
           </div>
           <div className={styles.navRight}>
-            <a className={cn(styles.btn, styles.yellow)} href="/#contact">
-              Join the Waitlist
+            <a className={cn(styles.btn, styles.yellow)} href="/#tools">
+              Core Tools
             </a>
             <button
               type="button"
@@ -60,8 +59,8 @@ export function SiteNav() {
             {link.label}
           </a>
         ))}
-        <a href="/#contact" onClick={() => setMobileOpen(false)}>
-          Join the Waitlist
+        <a href="/#tools" onClick={() => setMobileOpen(false)}>
+          Core Tools
         </a>
       </div>
     </>
