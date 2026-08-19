@@ -590,6 +590,41 @@
   margin: 0;
 }
 
+.providerSignup {
+  background: #0b0b0b;
+  color: #fff;
+}
+.providerGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+}
+.providerGrid .eyebrow {
+  color: var(--y);
+}
+.providerGrid h2 {
+  font-size: 42px;
+  line-height: 1.03;
+  letter-spacing: -2px;
+  margin: 10px 0 12px;
+}
+.providerGrid > div:first-child p {
+  color: #aaa;
+  font-size: 17px;
+}
+.providerCard {
+  background: #fff;
+  color: var(--b);
+  border-radius: 13px;
+  padding: 32px;
+}
+@media (max-width: 900px) {
+  .providerGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .page footer {
   background: #0b0b0b;
   color: #fff;

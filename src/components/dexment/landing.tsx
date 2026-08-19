@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Waitlist } from "@/components/sections/waitlist";
+import { ProviderWaitlist } from "@/components/sections/provider-waitlist";
 import styles from "@/app/page.module.css";
 
 const navLinks = [
@@ -84,8 +85,8 @@ export function DexmentLanding() {
                 <a className={cn(styles.btn, styles.dark)} href="#contact">
                   Start a Project
                 </a>
-                <a className={cn(styles.btn, styles.yellow)} href="#psp">
-                  Find a Professional
+                <a className={cn(styles.btn, styles.yellow)} href="#psp-signup">
+                  Join the Provider Waitlist
                 </a>
               </div>
             </div>
@@ -291,8 +292,8 @@ export function DexmentLanding() {
                 <li>Scopes, tasks, documents, approvals and deliverables in one place</li>
                 <li>Structured records that create greater accountability</li>
               </ul>
-              <a className={cn(styles.btn, styles.dark)} href="#contact">
-                Join the PSP Network
+              <a className={cn(styles.btn, styles.dark)} href="#psp-signup">
+                Register as a Service Provider
               </a>
             </div>
             <img
@@ -381,6 +382,22 @@ export function DexmentLanding() {
             </div>
             <div className={styles.formCol}>
               <Waitlist />
+            </div>
+          </div>
+        </section>
+
+        <section id="psp-signup" className={styles.providerSignup}>
+          <div className={cn(styles.wrap, styles.providerGrid)}>
+            <div>
+              <div className={styles.eyebrow}>For service providers</div>
+              <h2>Get on the provider waitlist.</h2>
+              <p>
+                Tell us what you do and where you work. When the PSP network opens, verified providers get first
+                access to client requests in their category.
+              </p>
+            </div>
+            <div className={styles.providerCard}>
+              <ProviderWaitlist />
             </div>
           </div>
         </section>
