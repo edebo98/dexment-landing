@@ -28,7 +28,7 @@ export function DexmentLanding() {
               </p>
               <div className={styles.actions}>
                 <a className={cn(styles.btn, styles.dark)} href="/#contact">
-                  Start a Project
+                  Join the Waitlist
                 </a>
                 <a className={cn(styles.btn, styles.yellow)} href="/#psp-signup">
                   Join the Provider Waitlist
@@ -237,8 +237,8 @@ export function DexmentLanding() {
                 <li>Scopes, tasks, documents, approvals and deliverables in one place</li>
                 <li>Structured records that create greater accountability</li>
               </ul>
-              <a className={cn(styles.btn, styles.dark)} href="#psp-signup">
-                Register as a Service Provider
+              <a className={cn(styles.btn, styles.dark)} href="/#psp-signup">
+                Join the Provider Waitlist
               </a>
             </div>
             <img
