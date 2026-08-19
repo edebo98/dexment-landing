@@ -273,6 +273,77 @@
   opacity: 0.92;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navMark {
+  height: 42px;
+  width: auto;
+  aspect-ratio: 180 / 179;
+  display: block;
+}
+.footMark {
+  height: 38px;
+  width: auto;
+  aspect-ratio: 180 / 179;
+  display: block;
+}
+@media (max-width: 400px) {
+  .wordmark {
+    display: none;
+  }
+}
+
+.heroVisual {
+  width: 100%;
+}
+.heroImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1000 / 882;
+  display: block;
+  border-radius: 14px;
+}
+.statChips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+.chip {
+  background: #101010;
+  border-radius: 11px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.chipLabel {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #999;
+}
+.chipValue {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+}
+.chipStatus {
+  color: var(--y);
+}
+
+.pspImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 360 / 794;
+  display: block;
+  border-radius: 16px;
+}
+
 .page section {
   padding: 82px 0;
 }
@@ -577,6 +648,9 @@
   }
   .page section {
     padding: 58px 0;
+  }
+  .statChips {
+    grid-template-columns: 1fr;
   }
 }
 @media (prefers-reduced-motion: reduce) {

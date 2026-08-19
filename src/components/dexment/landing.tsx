@@ -23,8 +23,17 @@ export function DexmentLanding() {
 
       <nav>
         <div className={cn(styles.wrap, styles.navin)}>
-          <a className={styles.logo} href="#">
-            DEX<span>MENT</span>
+          <a className={styles.brand} href="#">
+            <img
+              src="/images/dexment-mark-nav.png"
+              alt=""
+              width={180}
+              height={179}
+              className={styles.navMark}
+            />
+            <span className={cn(styles.logo, styles.wordmark)}>
+              DEX<span>MENT</span>
+            </span>
           </a>
           <div className={styles.links}>
             {navLinks.map((link) => (
@@ -80,60 +89,28 @@ export function DexmentLanding() {
                 </a>
               </div>
             </div>
-            <div className={styles.dash}>
-              <div className={styles.dashbar}>
-                <b>PROJECT OVERVIEW</b>
-                <span className={styles.live}>&#9679; ON TRACK</span>
-              </div>
-              <div className={styles.dashrow}>
-                <small>LEKKI PHASE 1 RESIDENCE</small>
-                <b>62% work complete &middot; ₦28.35M spent</b>
-              </div>
-              <div className={styles.mini}>
-                <div className={styles.dashrow}>
-                  <small>BUDGET</small>
-                  <b>63% USED</b>
+            <div className={styles.heroVisual}>
+              <img
+                src="/images/hero-app-mockup.webp"
+                alt="Dexment on desktop and mobile"
+                width={1000}
+                height={882}
+                className={styles.heroImg}
+              />
+              <div className={styles.statChips}>
+                <div className={styles.chip}>
+                  <span className={styles.chipLabel}>PROJECT</span>
+                  <span className={styles.chipValue}>62% complete</span>
                 </div>
-                <div className={styles.dashrow}>
-                  <small>APPROVALS</small>
-                  <b>3 PENDING</b>
+                <div className={styles.chip}>
+                  <span className={styles.chipLabel}>BUDGET</span>
+                  <span className={styles.chipValue}>63% used</span>
+                </div>
+                <div className={styles.chip}>
+                  <span className={styles.chipLabel}>STATUS</span>
+                  <span className={cn(styles.chipValue, styles.chipStatus)}>&#9679; On track</span>
                 </div>
               </div>
-              <div className={styles.dashrow}>
-                <small>RECENT ACTIVITY</small>
-                <b>Foundation approved &middot; Invoice #114 &middot; Site photos updated</b>
-              </div>
-
-              <svg
-                className={styles.pdfshot}
-                viewBox="0 0 760 250"
-                role="img"
-                aria-label="Placeholder graphic for the Dexment project dashboard screenshot"
-              >
-                <rect width="760" height="250" rx="10" fill="#1d1d1d" stroke="#303030" />
-                <text x="24" y="34" fill="#999" fontFamily="Inter,Arial" fontSize="12" fontWeight="700" letterSpacing="1">
-                  COST VS BUDGET
-                </text>
-                <g fill="#f5c400">
-                  <rect x="24" y="150" width="52" height="70" rx="4" />
-                  <rect x="94" y="118" width="52" height="102" rx="4" />
-                  <rect x="164" y="132" width="52" height="88" rx="4" />
-                  <rect x="234" y="86" width="52" height="134" rx="4" />
-                  <rect x="304" y="104" width="52" height="116" rx="4" />
-                </g>
-                <g fill="#3a3a3a">
-                  <rect x="374" y="140" width="52" height="80" rx="4" />
-                  <rect x="444" y="122" width="52" height="98" rx="4" />
-                </g>
-                <line x1="24" y1="228" x2="736" y2="228" stroke="#3a3a3a" strokeWidth="1" />
-                <rect x="540" y="60" width="196" height="60" rx="8" fill="#141414" stroke="#303030" />
-                <text x="558" y="84" fill="#777" fontFamily="Inter,Arial" fontSize="10" letterSpacing="1">
-                  PLACEHOLDER
-                </text>
-                <text x="558" y="104" fill="#f5c400" fontFamily="Inter,Arial" fontSize="14" fontWeight="800">
-                  Add screenshot
-                </text>
-              </svg>
             </div>
           </div>
         </header>
@@ -318,29 +295,13 @@ export function DexmentLanding() {
                 Join the PSP Network
               </a>
             </div>
-            <div className={cn(styles.card, styles.pspSteps)}>
-              <h3>PSP connection workflow</h3>
-              <div className={styles.step}>
-                <b>01 &middot; CLIENT</b>
-                <h4>Describe the job</h4>
-                <p>Create a request with requirements, timing and documents.</p>
-              </div>
-              <div className={styles.step}>
-                <b>02 &middot; DEXMENT</b>
-                <h4>Discover &amp; verify</h4>
-                <p>Find relevant providers and review their professional information.</p>
-              </div>
-              <div className={styles.step}>
-                <b>03 &middot; PSP</b>
-                <h4>Respond &amp; communicate</h4>
-                <p>Ask questions, share credentials and discuss the scope directly.</p>
-              </div>
-              <div className={styles.step}>
-                <b>04 &middot; ENGAGEMENT</b>
-                <h4>Manage &amp; deliver</h4>
-                <p>Move approved work into a structured workspace with tasks, documents and updates.</p>
-              </div>
-            </div>
+            <img
+              src="/images/psp-app-mockup.webp"
+              alt="Dexment PSP network on mobile"
+              width={360}
+              height={794}
+              className={styles.pspImg}
+            />
           </div>
         </section>
 
@@ -428,8 +389,17 @@ export function DexmentLanding() {
       <footer>
         <div className={cn(styles.wrap, styles.foot)}>
           <div>
-            <div className={styles.logo}>
-              DEX<span>MENT</span>
+            <div className={styles.brand}>
+              <img
+                src="/images/dexment-mark-nav.png"
+                alt=""
+                width={180}
+                height={179}
+                className={styles.footMark}
+              />
+              <span className={cn(styles.logo, styles.wordmark)}>
+                DEX<span>MENT</span>
+              </span>
             </div>
             <small>Plan. Track. Deliver.</small>
           </div>

@@ -50,7 +50,8 @@ export const metadata: Metadata = {
       "Complete visibility into your construction budget, documents, approvals and progress — all in one trusted workspace.",
   },
   icons: {
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon-32.png",
+    apple: "/favicon-180.png",
   },
   robots: {
     index: true,
