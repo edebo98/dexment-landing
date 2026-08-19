@@ -223,19 +223,19 @@ export function DexmentLanding() {
         <section id="psp" className={styles.psp}>
           <div className={cn(styles.wrap, styles.pspGrid)}>
             <div>
-              <div className={styles.eyebrow}>Professional Service Provider Network</div>
-              <h2 className={styles.pspTitle}>Find the right professional. Work with confidence.</h2>
+              <div className={styles.eyebrow}>Get discovered. Win more work.</div>
+              <h2 className={styles.pspTitle}>Connect with clients who need your expertise.</h2>
               <p className={styles.pspLead}>
-                Dexment connects clients with verified professional service providers, vendors and specialists.
-                Clients can discover providers, review credentials, communicate online and manage the engagement
-                inside the same platform.
+                Dexment helps qualified service providers get discovered by clients looking for trusted expertise.
+                Build your profile, submit credentials for verification, showcase your services and experience, and
+                manage opportunities from first contact through project delivery.
               </p>
               <ul className={styles.checks}>
-                <li>Verified professional profiles and credentials</li>
-                <li>Search by service, category, expertise and location</li>
-                <li>Direct client-to-PSP communication</li>
-                <li>Scopes, tasks, documents, approvals and deliverables in one place</li>
-                <li>Structured records that create greater accountability</li>
+                <li>Build a verified profile that strengthens client trust</li>
+                <li>Get discovered by clients searching by service, expertise and location</li>
+                <li>Receive and respond to relevant project opportunities</li>
+                <li>Communicate directly with prospective clients</li>
+                <li>Manage scopes, documents, approvals and deliverables in one place</li>
               </ul>
               <a className={cn(styles.btn, styles.dark)} href="/#psp-signup">
                 Join the Provider Waitlist
