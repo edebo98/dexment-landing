@@ -72,6 +72,7 @@ export function Waitlist() {
     setSubmitError(null);
 
     const { error } = await supabase.from("waitlist_signups").insert({
+      signup_type: "client",
       name: values.name.trim(),
       email: values.email.trim().toLowerCase(),
       country: values.country,
@@ -151,7 +152,6 @@ export function Waitlist() {
                 id="wl-name"
                 name="name"
                 autoComplete="name"
-                placeholder="Amara Okafor"
                 value={values.name}
                 onChange={(e) => updateField("name", e.target.value)}
                 aria-invalid={Boolean(errors.name)}
