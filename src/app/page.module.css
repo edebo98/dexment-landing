@@ -209,10 +209,11 @@
   font-weight: 900;
 }
 .hero h1 {
-  font-size: clamp(50px, 7vw, 78px);
-  line-height: 0.94;
-  letter-spacing: -4px;
+  font-size: clamp(36px, 4.6vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -2px;
   margin: 15px 0 22px;
+  max-width: 14ch;
 }
 .hero p {
   font-size: 18px;
@@ -274,6 +275,10 @@
 
 .page section {
   padding: 82px 0;
+}
+.page section[id],
+.page header[id] {
+  scroll-margin-top: 86px;
 }
 .head {
   max-width: 780px;
@@ -464,6 +469,16 @@
 .field {
   display: grid;
   gap: 5px;
+}
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 600px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
 }
 .formNote {
   font-size: 12px;

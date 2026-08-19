@@ -4,9 +4,19 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { countries, constructionStages, userTypes } from "@/lib/waitlist-options";
+import { countries, userTypes } from "@/lib/waitlist-options";
 import { supabase } from "@/lib/supabase";
 import styles from "@/app/page.module.css";
+
+const industries = [
+  "Construction",
+  "Consulting",
+  "Events",
+  "Technical Services",
+  "Property & Facilities",
+  "Design & Professional",
+  "Other",
+];
 
 interface FormState {
   name: string;
@@ -14,6 +24,7 @@ interface FormState {
   country: string;
   userType: string;
   stage: string;
+  industry: string;
 }
 
 const initialState: FormState = {
@@ -22,6 +33,7 @@ const initialState: FormState = {
   country: "",
   userType: "",
   stage: "",
+  industry: "",
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,7 +45,7 @@ function validate(values: FormState) {
   else if (!emailPattern.test(values.email)) errors.email = "Enter a valid email address.";
   if (!values.country) errors.country = "Select your country.";
   if (!values.userType) errors.userType = "Tell us who you are.";
-  if (!values.stage) errors.stage = "Select your current stage.";
+  if (!values.industry) errors.industry = "Select your industry.";
   return errors;
 }
 
@@ -65,6 +77,7 @@ export function Waitlist() {
       country: values.country,
       user_type: values.userType,
       construction_stage: values.stage,
+      industry: values.industry,
     });
 
     if (error) {
@@ -171,25 +184,48 @@ export function Waitlist() {
               ) : null}
             </div>
 
-            <div className={styles.field}>
-              <label htmlFor="wl-country">Country</label>
-              <select
-                id="wl-country"
-                name="country"
-                value={values.country}
-                onChange={(e) => updateField("country", e.target.value)}
-                aria-invalid={Boolean(errors.country)}
-              >
-                <option value="" disabled>
-                  Select country
-                </option>
-                {countries.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
+            <div className={styles.fieldRow}>
+              <div className={styles.field}>
+                <label htmlFor="wl-country">Country</label>
+                <select
+                  id="wl-country"
+                  name="country"
+                  value={values.country}
+                  onChange={(e) => updateField("country", e.target.value)}
+                  aria-invalid={Boolean(errors.country)}
+                >
+                  <option value="" disabled>
+                    Select country
                   </option>
-                ))}
-              </select>
-              {errors.country ? <span className={styles.fieldError}>{errors.country}</span> : null}
+                  {countries.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+                {errors.country ? <span className={styles.fieldError}>{errors.country}</span> : null}
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="wl-industry">Industry</label>
+                <select
+                  id="wl-industry"
+                  name="industry"
+                  value={values.industry}
+                  onChange={(e) => updateField("industry", e.target.value)}
+                  aria-invalid={Boolean(errors.industry)}
+                >
+                  <option value="" disabled>
+                    Select industry
+                  </option>
+                  {industries.map((i) => (
+                    <option key={i} value={i}>
+                      {i}
+                    </option>
+                  ))}
+                </select>
+                {errors.industry ? <span className={styles.fieldError}>{errors.industry}</span> : null}
+              </div>
             </div>
 
             <div className={styles.field}>
@@ -211,27 +247,6 @@ export function Waitlist() {
                 ))}
               </select>
               {errors.userType ? <span className={styles.fieldError}>{errors.userType}</span> : null}
-            </div>
-
-            <div className={styles.field}>
-              <label htmlFor="wl-stage">Current construction stage</label>
-              <select
-                id="wl-stage"
-                name="stage"
-                value={values.stage}
-                onChange={(e) => updateField("stage", e.target.value)}
-                aria-invalid={Boolean(errors.stage)}
-              >
-                <option value="" disabled>
-                  Select stage
-                </option>
-                {constructionStages.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-              {errors.stage ? <span className={styles.fieldError}>{errors.stage}</span> : null}
             </div>
 
             {submitError ? (

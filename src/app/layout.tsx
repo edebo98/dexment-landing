@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -21,7 +22,7 @@ const siteUrl = "https://dexment.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Dexment — Build With Confidence",
+    default: "Dexment — Powering projects, connecting expertise",
     template: "%s | Dexment",
   },
   description:

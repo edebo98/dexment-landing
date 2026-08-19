@@ -66,11 +66,7 @@ export function DexmentLanding() {
           <div className={cn(styles.wrap, styles.heroGrid)}>
             <div>
               <div className={styles.eyebrow}>Plan. Track. Deliver.</div>
-              <h1>
-                Build with
-                <br />
-                confidence.
-              </h1>
+              <h1>Powering projects, connecting expertise.</h1>
               <p>
                 Dexment is a connected project and professional-services platform that brings clients, project
                 managers, consultants, vendors, trades and verified professionals into one transparent workspace.
